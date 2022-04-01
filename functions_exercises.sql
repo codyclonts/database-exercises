@@ -145,10 +145,9 @@ from employees
 where last_name LIKE 'E%E';
 
 #3
-select Concat(first_name, ' ', last_name) as full_name
+select UPPER(Concat(first_name, ' ', last_name)) as full_name
 from employees
-where last_name LIKE 'E%E'
-Upper(full_name);
+where last_name LIKE 'E%E';
 
 SELECT UPPER(CONCAT(first_name, ' ', last_name)) full_name
 FROM employees
@@ -178,3 +177,4 @@ substr(last_name,1,4),
 substr(birth_date,6,2), 
 substr(birth_date,3,2))) as username, first_name, last_name
 from employees;
+
