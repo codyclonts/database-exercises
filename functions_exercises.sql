@@ -155,7 +155,7 @@ FROM employees
 WHERE last_name LIKE 'E%E';
 
 #4
- Select Datediff(curdate(),hire_date)
+ Select Datediff(curdate(),hire_date) as days_with_company
 FROM employees 
 Where (hire_date BETWEEN '1990-01-01' AND '1999-12-31'
 AND birth_date LIKE '%-12-25');
@@ -165,11 +165,16 @@ use employees;
 describe salaries;
 
 select min(salary), max(salary)
-from salaries;
+from salaries
+where to_date >CURDATE();
 
 -- min 38623, max 158220
 
 #6
 
-select lower(concat(substr(first_name,1,1), substr(last_name,1,4), '_', substr(birth_date,6,2), substr(birth_date,3,2))) as username
+select lower(concat(substr(first_name,1,1), 
+substr(last_name,1,4), 
+'_', 
+substr(birth_date,6,2), 
+substr(birth_date,3,2))) as username, first_name, last_name
 from employees;
