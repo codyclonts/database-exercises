@@ -15,7 +15,7 @@ SELECT * from jemison_1745.employees_with_departments;
 -- 1a
 ALTER TABLE jemison_1745.employees_with_departments 
 ADD full_name 
-VARCHAR(100);
+VARCHAR(31);
 
 
 select database();
@@ -49,12 +49,60 @@ WHERE to_date > CURDATE();
 
 
 -- 2
+use jemison_1745;
+select tables;
 
-## guess work right now 
 
-CREATE TEMPORARY TABLE jemison_1745.payment as 
+CREATE TEMPORARY TABLE payments as 
 SELECT *
-FROM payment; 
+FROM sakila.payment; 
 
-update jemison_1745.payment 
-SET amount = (amount * 100)
+
+select * from payments;
+
+alter table payments add amount_in_pennies INT(255);
+
+UPDATE payments set amount_in_pennies = (amount * 100);
+
+select * from payments;
+-- 3 
+
+
+create temporary table jemison_1745.current_avg_dept_pay as 
+SELECT d.dept_name, ROUND(AVG(s.salary) , 0) AS avg_dept_salary
+FROM departments d
+JOIN dept_emp de on d.dept_no= de.dept_no
+join employees e on e.emp_no = de.emp_no
+join salaries s on e.emp_no = s.emp_no
+WHERE s.to_date > NOW()
+group by d.dept_name 
+order by avg_dept_salary DESC;
+
+
+USE jemison_1745;
+
+select * from current_avg_dept_pay;
+(select stddev(salary) from employees.salaries);
+
+ #zscore
+ select ((avg_dept_salary - 63810) / 16904) as zscore from current_avg_dept_pay;
+ 
+ select *, 
+ ((avg_dept_salary 
+ - 
+ (select avg(salary) 
+ from employees.salaries)) 
+ / 
+ (select stddev(salary)
+ from employees.salaries))
+ as zscore
+ from current_avg_dept_pay
+ order by zscore desc;
+ 
+ -- sales is the best department to work in 
+ 
+
+
+
+
+
