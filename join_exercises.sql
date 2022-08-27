@@ -151,6 +151,12 @@ WHERE s.to_date > CURDATE() and dm.to_date > CURDATE()
 ORDER BY s.salary DESC
 limit 1;
 
+
+
+use employees;
+
+
+ 
 #10
 SELECT d.dept_name, ROUND(AVG(s.salary) , 0) AS avg_dept_salary
 FROM departments d
