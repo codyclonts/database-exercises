@@ -27,7 +27,7 @@ Select COUNT(*)
 From employees
 WHERE last_name LIKE 'E%';
 
--- 5. 7330 last names start with E
+-- 5. 7330 last names start with e
 
 Select COUNT(*)
 FROM employees 
