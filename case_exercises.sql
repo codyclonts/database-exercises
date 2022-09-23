@@ -2,7 +2,6 @@ use employees;
 
 
 # 1
-
 select * from employees;
 select * from dept_emp;
 
