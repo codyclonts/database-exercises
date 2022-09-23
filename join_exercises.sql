@@ -4,8 +4,6 @@ select * from users;
 
 
 #1
-
-
 select *
 from users as u
 join roles as r ON u.role_id= r.id;
