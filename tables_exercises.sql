@@ -20,5 +20,6 @@ show tables;
 --   CONSTRAINT `dept_manager_ibfk_1` FOREIGN KEY (`emp_no`) REFERENCES `employees` (`emp_no`) ON DELETE CASCADE ON UPDATE RESTRICT,
 --   CONSTRAINT `dept_manager_ibfk_2` FOREIGN KEY (`dept_no`) REFERENCES `departments` (`dept_no`) ON DELETE CASCADE ON UPDATE RESTRICT
 -- ) ENGINE=InnoDB DEFAULT CHARSET=latin1'
+
 SHOW CREATE TABLE dept_manager;
   
